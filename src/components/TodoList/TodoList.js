@@ -1,10 +1,21 @@
 import React from 'react';
-import { ListGroup, ListGroupItem } from 'react-bootstrap';
+import { ListGroup } from 'react-bootstrap';
 import Todo from '../Todo/Todo';
+import uuid from 'uuid';
 
-const TodoList = (props) => (
+const TodoList = ({ removeTodo, todos, toggleTodo, editTodo }) => (
 	<ListGroup>
-		{props.todos.map((todo) => <Todo task={todo.task} completed={todo.completed} id={todo.id} />)}
+		{todos.map((todo) => (
+			<Todo
+				key={todo.id}
+				task={todo.task}
+				completed={todo.completed}
+				id={todo.id}
+				removeTodo={removeTodo}
+				toggleTodo={toggleTodo}
+				editTodo={editTodo}
+			/>
+		))}
 	</ListGroup>
 );
 
