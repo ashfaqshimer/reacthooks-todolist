@@ -1,14 +1,12 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import { Navbar } from 'react-bootstrap';
 
 import './App.css';
 import TodoPage from './components/TodoPage/TodoPage';
 
 function App() {
 	return (
-		<div className="App">
-			<Navbar bg="light">This is the Navbar</Navbar>
+		<div className='App'>
 			<Container>
 				<TodoPage />
 			</Container>

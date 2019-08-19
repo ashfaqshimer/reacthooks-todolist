@@ -1,7 +1,6 @@
 import React from 'react';
 import { ListGroup } from 'react-bootstrap';
 import Todo from '../Todo/Todo';
-import uuid from 'uuid';
 
 const TodoList = ({ removeTodo, todos, toggleTodo, editTodo }) => (
 	<ListGroup>

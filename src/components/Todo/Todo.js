@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ListGroupItem, Row, Col } from 'react-bootstrap';
 import Checkbox from '@material-ui/core/Checkbox';
 import { IconButton } from '@material-ui/core';
