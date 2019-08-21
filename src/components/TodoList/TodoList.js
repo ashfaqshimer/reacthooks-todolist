@@ -1,21 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { ListGroup } from 'react-bootstrap';
 import Todo from '../Todo/Todo';
+import { TodosContext } from '../../contexts/Todos.context';
 
-const TodoList = ({ removeTodo, todos, toggleTodo, editTodo }) => (
-	<ListGroup>
-		{todos.map((todo) => (
-			<Todo
-				key={todo.id}
-				task={todo.task}
-				completed={todo.completed}
-				id={todo.id}
-				removeTodo={removeTodo}
-				toggleTodo={toggleTodo}
-				editTodo={editTodo}
-			/>
-		))}
-	</ListGroup>
-);
+const TodoList = () => {
+	const { todos } = useContext(TodosContext);
+
+	return (
+		<ListGroup>
+			{todos.map((todo) => <Todo key={todo.id} task={todo.task} completed={todo.completed} id={todo.id} />)}
+		</ListGroup>
+	);
+};
 
 export default TodoList;

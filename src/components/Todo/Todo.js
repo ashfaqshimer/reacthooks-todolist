@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { ListGroupItem, Row, Col } from 'react-bootstrap';
 import Checkbox from '@material-ui/core/Checkbox';
 import { IconButton } from '@material-ui/core';
@@ -7,9 +7,12 @@ import EditIcon from '@material-ui/icons/Edit';
 
 import useToggleState from '../../hooks/useToggleState';
 import EditTodoForm from '../EditTodoForm/EditTodoForm';
+import { TodosContext } from '../../contexts/Todos.context';
 
-const Todo = ({ task, id, completed, removeTodo, toggleTodo, editTodo }) => {
+const Todo = ({ task, id, completed }) => {
 	const [ isEditing, toggleEditing ] = useToggleState(false);
+	const { removeTodo, toggleTodo, editTodo } = useContext(TodosContext);
+
 	return (
 		<ListGroupItem>
 			{isEditing ? (
