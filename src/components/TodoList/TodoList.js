@@ -4,7 +4,7 @@ import Todo from '../Todo/Todo';
 import { TodosContext } from '../../contexts/Todos.context';
 
 const TodoList = () => {
-	const { todos } = useContext(TodosContext);
+	const todos = useContext(TodosContext);
 
 	return (
 		<ListGroup>

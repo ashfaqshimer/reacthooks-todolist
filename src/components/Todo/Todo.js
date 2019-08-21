@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, memo } from 'react';
 import { ListGroupItem, Row, Col } from 'react-bootstrap';
 import Checkbox from '@material-ui/core/Checkbox';
 import { IconButton } from '@material-ui/core';
@@ -7,20 +7,20 @@ import EditIcon from '@material-ui/icons/Edit';
 
 import useToggleState from '../../hooks/useToggleState';
 import EditTodoForm from '../EditTodoForm/EditTodoForm';
-import { TodosContext } from '../../contexts/Todos.context';
+import { DispatchContext } from '../../contexts/Todos.context';
 
 const Todo = ({ task, id, completed }) => {
 	const [ isEditing, toggleEditing ] = useToggleState(false);
-	const { removeTodo, toggleTodo, editTodo } = useContext(TodosContext);
+	const dispatch = useContext(DispatchContext);
 
 	return (
 		<ListGroupItem>
 			{isEditing ? (
-				<EditTodoForm toggleEditing={toggleEditing} task={task} editTodo={editTodo} id={id} />
+				<EditTodoForm toggleEditing={toggleEditing} task={task} id={id} />
 			) : (
 				<Row>
 					<Col md={1}>
-						<Checkbox tabIndex={-1} checked={completed} onClick={() => toggleTodo(id)} />
+						<Checkbox tabIndex={-1} checked={completed} onClick={() => dispatch({ type: 'TOGGLE', id })} />
 					</Col>
 					<Col md={8} style={{ textDecoration: completed ? 'line-through' : 'none' }}>
 						{task}
@@ -29,7 +29,7 @@ const Todo = ({ task, id, completed }) => {
 						<IconButton onClick={toggleEditing}>
 							<EditIcon />
 						</IconButton>
-						<IconButton onClick={() => removeTodo(id)}>
+						<IconButton onClick={() => dispatch({ type: 'REMOVE', id })}>
 							<DeleteIcon />
 						</IconButton>
 					</Col>
@@ -39,4 +39,4 @@ const Todo = ({ task, id, completed }) => {
 	);
 };
 
-export default Todo;
+export default memo(Todo);

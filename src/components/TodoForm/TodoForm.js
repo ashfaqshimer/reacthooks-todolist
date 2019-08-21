@@ -2,16 +2,16 @@ import React, { useContext } from 'react';
 import { Form } from 'react-bootstrap';
 
 import useInputState from '../../hooks/useInputState';
-import { TodosContext } from '../../contexts/Todos.context';
+import { DispatchContext } from '../../contexts/Todos.context';
 
 const TodoForm = () => {
 	const [ value, handleChange, reset ] = useInputState('');
 
-	const { addTodo } = useContext(TodosContext);
+	const dispatch = useContext(DispatchContext);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		addTodo(value);
+		dispatch({ type: 'ADD', newTodo: value });
 		reset();
 	};
 
